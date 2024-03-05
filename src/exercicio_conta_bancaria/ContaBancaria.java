@@ -34,30 +34,26 @@ public class ContaBancaria {
 
 	@Override
 	public String toString() {
-		return "Número da Conta: " + numeroConta + "- Saldo = R$" + saldo;
+		return "Número da Conta: " + numeroConta + " - Saldo = R$" + saldo;
 	}
 	
-	public boolean deposito(double valor) {
-		saldo += valor;
-		return true;
+	public void deposito(double valor) {
+		setSaldo(getSaldo() + valor);
 	}
 	
 	public boolean saque(double valor) {
-		if(saldo >= valor) {
-			saldo -= valor;
-			return false;
+		if(getSaldo() >= valor) {
+			setSaldo(getSaldo()- valor);
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
-	public boolean transferencia(ContaBancaria destino, double valor) {
-		if(saque(valor)) {
-			if(destino.deposito(valor)) {
-				return true;
-			}else {
-				deposito(valor);
-				return false;
-			}
+	public boolean transferencia(ContaBancaria contaDestino, double valor) {
+		if(getSaldo() >= valor) {
+			setSaldo(getSaldo() - valor);
+			contaDestino.deposito(valor);
+			return true;
 		}
 		return false;
 	}
