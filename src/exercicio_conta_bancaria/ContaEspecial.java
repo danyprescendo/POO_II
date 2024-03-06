@@ -24,7 +24,7 @@ public class ContaEspecial extends ContaBancaria {
 
 	@Override
 	public String toString() {
-		return "Limite = R$" + getLimite();
+		return "Número da conta: " + super.getNumeroConta() + " (Saldo: R$" + super.getSaldo() + ")" + " - Limite = R$" + getLimite();
 	}
 	
 	@Override

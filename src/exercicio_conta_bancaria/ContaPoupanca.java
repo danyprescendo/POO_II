@@ -34,6 +34,11 @@ public class ContaPoupanca extends ContaBancaria {
 		return limite_saques_mes;
 	}
 	
+	@Override
+	public String toString() {
+		return "Número da conta: " + getNumeroConta() + " (Saldo: R$" + getSaldo() + ") Saques Realizados no mês: " + saquesRealizadosMes + ", Mês do ultimo saque = " + mesUltimoSaque;
+	}
+
 	public boolean saque(double valor) {
         LocalDate hoje = LocalDate.now();
         if (hoje.getMonthValue() != mesUltimoSaque) {

@@ -1,60 +1,61 @@
 package exercicio_conta_bancaria.testes;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import exercicio_conta_bancaria.ContaBancaria;
+import exercicio_conta_bancaria.ContaCorrente;
 
-class ContaBancariaTest {
+class ContaCorrenteTest {
 	
-	ContaBancaria c1;
-	ContaBancaria c2;
+	ContaCorrente c1;
+	ContaCorrente c2;
 	
 	@BeforeEach
 	public void inicializaContaBancaria() {
-		c1 = new ContaBancaria();
-		c2 = new ContaBancaria(1, 2000);
-	}
-
-	@Test
-	public void construtorVazioTest() {
-		assertEquals(999, c1.getNumeroConta());
-		assertEquals(0, c1.getSaldo());
-		assertEquals("Número da Conta: 999 - Saldo = R$0.0", c1.toString());
-		
+		c1 = new ContaCorrente();
+		c2 = new ContaCorrente(55, 3000);
 	}
 	
 	@Test
-	public void construtorParamentrosTest() {
-		assertEquals(1, c2.getNumeroConta());
-		assertEquals(2000, c2.getSaldo());
-		assertEquals("Número da Conta: 1 - Saldo = R$2000.0", c2.toString());
-		
+    public void testConstrutorVazio() {
+        assertEquals(999, c1.getNumeroConta());
+        assertEquals(0.0, c1.getSaldo());
+        assertEquals("Número da Conta: 999 - Saldo = R$0.0", c1.toString());
+    }
+	
+	@Test
+	public void testConstrutorParametros() {
+		assertEquals(55, c2.getNumeroConta());
+		assertEquals(3000.0, c2.getSaldo());
+		assertEquals("Número da Conta: 55 - Saldo = R$3000.0", c2.toString());
 	}
+	
 	
 	@Test
      void depositoTest() {
-		c1.setSaldo(100);
-		c1.deposito(50);
-        assertEquals(150.0, c1.getSaldo());
+		c1.deposito(3000.0);
+        assertEquals(3000.0, c1.getSaldo());
     }
 	
 	@Test
 	 void saqueSaldoSuficienteTest() {
 		ContaBancaria c3 = new ContaBancaria();
-		c3.setSaldo(100.0);
-		assertTrue(c3.saque(50.0));
-		assertEquals(50.0, c3.getSaldo());
+		c3.setSaldo(20.0);
+		assertTrue(c3.saque(10.0));
+		assertEquals(10.0, c3.getSaldo());
 	}
 	
 	@Test
 	 void saqueSaldoInsuficienteTest() {
 		ContaBancaria c4 = new ContaBancaria();
-		c4.setSaldo(300.0);
-		assertFalse(c4.saque(500.0));
-		assertEquals(300.0, c4.getSaldo());
+		c4.setSaldo(100.0);
+		assertFalse(c4.saque(200.0));
+		assertEquals(100.0, c4.getSaldo());
 	}
 	
 	@Test
