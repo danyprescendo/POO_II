@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ContaPoupanca extends ContaBancaria {
 	
-	private static final int limite_saques_mes = 5;
+	private static final int LIMITE_SAQUES_MES = 5;
 	private int saquesRealizadosMes;
     private int mesUltimoSaque;
     
@@ -31,7 +31,7 @@ public class ContaPoupanca extends ContaBancaria {
 		this.mesUltimoSaque = mesUltimoSaque;
 	}
 	public static int getLimiteSaquesMes() {
-		return limite_saques_mes;
+		return LIMITE_SAQUES_MES;
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class ContaPoupanca extends ContaBancaria {
             saquesRealizadosMes = 0; 
             mesUltimoSaque = hoje.getMonthValue(); 
         }
-        if (saquesRealizadosMes < limite_saques_mes && valor <= getSaldo()) {
+        if (saquesRealizadosMes < LIMITE_SAQUES_MES && valor <= getSaldo()) {
             setSaldo(getSaldo() - valor);
             saquesRealizadosMes++;
             return true;
