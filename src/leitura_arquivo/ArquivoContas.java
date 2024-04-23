@@ -3,7 +3,6 @@ package leitura_arquivo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import exercicio_conta_bancaria.ContaBancaria;
 import exercicio_conta_bancaria.ContaCorrente;
 import exercicio_conta_bancaria.ContaEspecial;
